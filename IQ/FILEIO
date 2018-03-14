@@ -25,6 +25,8 @@ from the specified stream and stores it into the string pointed to by str.
 It stops when either (n-1) characters are read, the newline character is read,
 or the end-of-file is reached, whichever comes first.
 
+NOTE1: The fputs adds null character to the buffer.
+
 Parameters:
 str − This is the pointer to an array of chars where the string read is stored.
 
