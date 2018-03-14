@@ -1,0 +1,79 @@
+Q what are the file operations in C explain the built in functions ?
+ANS:
+Creation of a new file (fopen with attributes as “a” or “a+” or “w” or “w++”)
+Opening an existing file (fopen)
+Reading from file (fgets or fread)
+Writing to a file (fputs or fwrite)
+Moving to a specific location in a file (fseek, rewind)
+Closing a file (fclose)
+
+Built in functions
+
+fopen
+=====
+FILE *fopen(filename, "attribute") Opens the filename pointed to by filename 
+ using the given mode.
+
+   
+fgets
+=====
+char *fgets(char *str, int n, FILE *stream)
+
+Description:
+The C library function char *fgets(char *str, int n, FILE *stream) reads a line
+from the specified stream and stores it into the string pointed to by str. 
+It stops when either (n-1) characters are read, the newline character is read,
+or the end-of-file is reached, whichever comes first.
+
+Parameters:
+str − This is the pointer to an array of chars where the string read is stored.
+
+n − This is the maximum number of characters to be read (including the final 
+null-character). Usually, the length of the array passed as str is used.
+
+stream − This is the pointer to a FILE object that identifies the 
+stream where characters are read from.
+
+Return Value:
+On success, the function returns the same str parameter. 
+If the End-of-File is encountered and no characters have been read, 
+the contents of str remain unchanged and a null pointer is returned.
+If an error occurs, a null pointer is returned.
+
+fread
+=====
+
+size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
+
+Description:
+reads data from the given stream into the array pointed to, by ptr.
+
+Parameters:
+ptr − This is the pointer to a block of memory with a minimum size of size of nmemb bytes.
+size − This is the size in bytes of each element to be read.
+nmemb − This is the number of elements, each one with a size of size bytes.
+stream − This is the pointer to a FILE object that specifies an input stream.
+
+Return Value
+The total number of elements successfully read are returned as a size_t object, 
+which is an integral data type. If this number differs from the nmemb parameter,
+then either an error had occurred or the End Of File was reached.
+
+fputs
+=====
+int fputs(const char *str, FILE *stream)
+
+Description:
+writes a string to the specified stream up to but not including the null character.
+
+NOTE1: The fputs does not add the null character to the file.
+NOTE2: The parameter is const char * , not just char *
+
+Parameters:
+str − This is an array containing the null-terminated sequence of characters to be written.
+
+stream − This is the pointer to a FILE object that identifies the stream where the string is to be written.
+
+Return Value:
+This function returns a non-negative value, or else on error it returns EOF.
+
