@@ -64,16 +64,69 @@ fputs
 int fputs(const char *str, FILE *stream)
 
 Description:
-writes a string to the specified stream up to but not including the null character.
+writes a string to the specified stream up to but not including 
+the null character.
 
 NOTE1: The fputs does not add the null character to the file.
 NOTE2: The parameter is const char * , not just char *
 
 Parameters:
-str − This is an array containing the null-terminated sequence of characters to be written.
+str − This is an array containing the null-terminated sequence of 
+characters to be written.
 
-stream − This is the pointer to a FILE object that identifies the stream where the string is to be written.
+stream − This is the pointer to a FILE object that identifies the stream 
+where the string is to be written.
 
 Return Value:
 This function returns a non-negative value, or else on error it returns EOF.
 
+fwrite
+======
+size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
+
+Description:
+writes data from the array pointed to, by ptr to the given stream.
+NOTE1: The parameter is char * not const char * 
+
+Parameters:
+ptr − This is the pointer to the array of elements to be written.
+size − This is the size in bytes of each element to be written.
+nmemb − This is the number of elements, each one with a size of size bytes.
+stream − This is the pointer to a FILE object that specifies an output stream.
+
+Return Value:
+This function returns the total number of elements successfully returned as a 
+size_t object, which is an integral data type. If this number differs 
+from the nmemb parameter, it will show an error.
+
+fseek
+=====
+int fseek(FILE *stream, long int offset, int whence)
+
+Description:
+sets the file position of the stream to the given offset.
+
+Parameters:
+stream − This is the pointer to a FILE object that identifies the stream.
+offset − This is the number of bytes to offset from whence.
+whence − This is the position from where offset is added. 
+It is specified by one of the following constants 
+SEEK_SET - Beginning of file
+SEEK_CUR - Current position of the file pointer
+SEEK_END - End of file
+
+Return Value:
+This function returns zero if successful, or else it returns a non-zero value.
+
+fclose
+======
+int fclose(FILE *stream)
+
+Description:
+closes the stream. All buffers are flushed.
+
+Parameters:
+stream − This is the pointer to a FILE object that specifies the stream to be closed.
+
+Return Value:
+This method returns zero if the stream is successfully closed. On failure, EOF is returned.
