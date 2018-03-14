@@ -132,3 +132,52 @@ stream − This is the pointer to a FILE object that specifies the stream to be 
 
 Return Value:
 This method returns zero if the stream is successfully closed. On failure, EOF is returned.
+
+
+what does fopen return when unable to open file ?
+NULL
+
+what are the  different file opening modes
+r = read mode only , file should exist otherwise return null
+r+ = update(read/write) mode, file should exist otherwies return null 
+w = write mode only,if the file already exists override it (empty it) otherwise create the file
+w+ = update(read/write mode), if the file already exists override it (empty it) otherwise create the file
+a = append, file is created if not present
+a+ = Opens a file for reading and appending,file is created if not present
+
+
+what is rewind function?
+void rewind(FILE *stream) sets the file position to the beginning of the file of the given stream.
+
+which is preferred fseek or rewind ?
+fseek is preferred because in rewind, there is no way to check if the operations completed successfully 
+
+What is stream in c programming language?
+it is linear queue which connect file to program and passes block of data 
+in both direction .it is independent of devices which we are using. 
+We can also define stream as source of data. This source can be
+(a) A file
+(b) Hard disk or CD, DVD etc.
+(c) I/O devices etc.
+there are two type of stream.
+(a) Text streams
+(b) Binary streams
+
+what is a file pointer ?
+FILE pointer is a pointer to a struct data type FILE.
+
+What is difference between file opening mode r+ and w+ in c?
+
+Both r+ and w+ we can read ,write on file but r+ does not truncate 
+(delete) the content of file  as well it doesn’t create a new file 
+if such file doesn’t exits while in w+ truncate the content of file
+as well as create a new file if such file doesn’t exists.
+
+what is fstat function ?
+Function int fstat (char *, struct stat *) store the information of 
+open file in form of structure struct stat Structure struct stat 
+has been defined in sys\stat.h as device where the file is stored and also
+mode and size of the file.
+
+what is the value of EOF ?
+the value of EOF is -1
