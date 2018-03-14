@@ -1,1 +1,28 @@
+What is a Thread? 
+A thread is a sequence of instructions within a process that can be managed
+by a scheduler.
+
+what is the difference between process and thread ?
+1. processes exists independently, while threads exist as subsets of a process
+2. threads shares with other threads their code section, data section, heap
+   and OS resources like open files and signals
+3. But, like process, a thread has its own program counter (PC), 
+   a register set, and a stack space.
+   
+
+When we should use threads in our application ?
+1. Offloading a batch of work to a worker thread so your program can either 
+   continue responding to user input or so you can carry on running other code
+   that doesn't rely on that work.
+2. Handling I/O particularly server and network communication where the response
+   time is variable or unknown.
+3. Parallel processing of data where you can sub-divide the work down into 
+   discrete non-dependant units of work
+4. Timer related work i.e 'every 500ms check if x has changed'
+5. when we are using Multicore machines.
+
+
+what are the types of threads ?
+1. User level threads - User managed threads.
+2. kernel level threads − Operating System managed threads acting on kernel, an operating system core.
 
