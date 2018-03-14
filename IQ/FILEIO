@@ -1,6 +1,6 @@
 Q what are the file operations in C explain the built in functions ?
 ANS:
-Creation of a new file (fopen with attributes as “a” or “a+” or “w” or “w++”)
+Creation of a new file (fopen with attributes as “a” or “a+” or “w” or “w+”)
 Opening an existing file (fopen)
 Reading from file (fgets or fread)
 Writing to a file (fputs or fwrite)
