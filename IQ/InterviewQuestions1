@@ -1,0 +1,55 @@
+C Interview Questions
+
+Given a situation, identify the data structure you will use. You need to justify the data structure chosen.
+OOPS concepts
+what are the C file operations explain ?
+ANS: Refer to FILE/IO
+
+What are the changes to be done in the program if it has to run in multi-threading environment?
+
+if mutex creates overhead because of big critical section, how to solve it?
+what are the different storage classes in Call
+can we return a static pointer from a function 
+where are string literals stored in C 
+explain the memory segment of a C program
+Sample Questions Asked:
+Layer2 functioning
+ARP
+For ipv6 which protocol is used for finding mac address (NDP)
+Layer 3 Packet forwarding
+IP Fragmentation happens at which layer
+TCP Segmentation is based on which parameter (MSS)
+TCP Layer Questions 
+Brief about TCP 3 way handshake mechanism (Mostly questions asked in TCP Layer) 
+Why Sliding window protocol is required and its functionality
+Congestion Control
+Retransmission process and timer value ?
+What is TCP Wait State?
+TCP Window size is in bytes or what ?
+TCP Windowing mechanism ?
+TCP Active open and Passive open modes ?
+Default Window Size
+C Questions 
+Structure padding and alignment why it requires
+Memory Regions 
+HEAP/Stack 
+Where Global variable gets stored
+Function Pointer usage
+Kernel Questions 
+Multithreading Questions
+Why do we need NAT?
+What is Virtual Memory?
+Why do we need data structures? Diff b/w structures and LL.
+What are AVL trees?
+What are Balanced trees?
+How does Linux boot? Explain in detail including device drivers, file system and memory initialization.
+How do you detect deadlock? How do you prevent Deadlock?
+Which IPC mechanisms have you used/implemented?
+Explain blocking and non-blocking calls?
+What are synchronous and asynchronous calls?
+Socket calls used at server and client side?
+Why do we need to bind the address?
+How do you delete nth node? Don’t use temp variable to copy data, instead adjust only the links.
+How do you implement a double linked list? What is the advantage of it?
+
+
