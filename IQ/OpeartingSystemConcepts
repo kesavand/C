@@ -67,3 +67,29 @@ Pthread_yieid - Release the CPU to let another thread run
 Pthread_attr_init - Create and initialize a thread's attribute structure
 Pthread_attr_destroy - Remove a thread's attribute structure
 
+
+can we use the same synchronization mechanisams for both thread synchronization and process synchronization ?
+
+semaphores are generally used for multi process synchronization in 
+terms of shared memory access, etc. critical sections, mutexes and conditions 
+are the more common tools for thread synchronization within a process.
+generally speaking, the methods used to synchronize threads are not 
+used to synchronize processes, but the reverse is usually not true.
+In fact its fairly common to use semaphores for thread synchronization.
+
+
+what is re-entrant and thread safe function ?
+a re-entrant function is a function that can be safely interrupted in the middle of its execution
+and then safely be called again ("re-entered") before its previous invocations complete execution.
+1. A reentrant function does not hold static data over successive calls
+2. It should not return a pointer to static data
+3. It should not call non-reentrant functions.
+A threadsafe function protects shared resources from concurrent access by locks.
+
+What are the changes to be done in the program if it has to run in multi-threading environment?
+when converting a single threaded program to multi threaded the following
+issues needs to be taken care.
+
+1. gloable variables accessd by multiple threads can cause race condition.
+   avoid of global variables, mutex can be used to solve this issue.
+2. all the functions that can be called from multiple threads should be re-entrant
