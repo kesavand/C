@@ -198,3 +198,149 @@ sem - Target Semaphore
 Return Value:
 0 on success
 -1 on failure, sets errno
+
+
+what is a mutex ?
+A mutex is a lock used to synchronize access to a shared resource. 
+
+what is priority inversion ?
+
+
+what is deadlock ?
+If a thread which had already locked a mutex, tries to lock the mutex again,
+it will enter into the waiting list of that mutex, which results in deadlock.
+It is because no other thread can unlock the mutex. An operating system implementer
+can exercise care in identifying the owner of mutex and return if it is 
+already locked by same thread to prevent deadlocks.
+
+what is the difference between binary semaphore and mutex ?
+1. No semaphores are used for signalling and mutex for  locking mechanisms
+2. Mutex can be released only by thread that had acquired it, while binary 
+   semaphore can be released from any other thread (or process)
+
+
+Creating Mutex
+int pthread_mutex_init(pthread_mutex_t *mutex,const pthread_mutexattr_t *attr); 
+
+Description:
+Initialize a pthread mutex: the mutex is initially unlocked
+
+Parameters:
+mutex - Target Mutex
+
+attr
+NULL: the default mutex attributes are used
+Non-NULL: initializes with specified attributes
+NOTE : 
+1.If the mutex type is PTHREAD_MUTEX_NORMAL, deadlock detection shall not be provided.
+
+2. If the mutex type is PTHREAD_MUTEX_ERRORCHECK, then error checking shall be provided.
+If a thread attempts to relock a mutex that it has already locked, an error shall be returned. 
+3. If the mutex type is PTHREAD_MUTEX_DEFAULT, attempting to recursively lock the mutex results in undefined behavior.
+
+Return Value:
+0 on success
+Error number on failure
+
+
+
+Destroying a mutex
+int pthread_mutex_destroy(pthread_mutex_t *mutex);
+
+Description:
+Destroy a pthread mutex
+
+Parameters:
+mutex - Target Mutex
+
+Return Value:
+0 on success
+Error number on failure
+
+
+Locking/unlocking a mutex
+
+int pthread_mutex_lock(pthread_mutex_t *mutex);
+int pthread_mutex_trylock(pthread_mutex_t *mutex);
+int pthread_mutex_unlock(pthread_mutex_t *mutex); 
+
+Description:
+Locking/check/unlocking a mutex
+
+Parameters:
+mutex - Target Mutex
+
+Return Value:
+0 on success
+Error number on failure
+
+
+what is a condition variable ?
+condition variable is a synchronizing mechanism between threads
+When a thread is waiting on a mutex it will continuously keep polling on the mutex
+waiting for it to get unlocked. Such behavior could lead to wastage of CPU resources.
+This can be prevented by using the condition variables.
+Condition variables are 
+
+Initialize condition variable
+int pthread_cond_init(pthread_cond_t *cond,const pthread_condattr_t *attr);
+
+Description:
+initialize the condition variable referenced by cond with attributes referenced by attr
+
+Parameters:
+cond - address of condition variable
+attr - attribues
+NOTE : if attibute is process_shared the condition variable is used to synchronize process.
+
+Return Value: 
+0 - success
+value - as not successful. value is set to indicate the error condition.
+
+
+
+Destroy Condition variable:
+int pthread_cond_destroy(pthread_cond_t *cond);
+
+Description:
+Destroys the condition variable 
+
+Parameters:
+cond - address of condition variable
+
+Return Value:
+0 - success
+value - as not successful. value is set to indicate the error condition.
+
+
+Waiting for condition variable
+ int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex); 
+ 
+ 
+Description:
+blocks the calling thread, waiting for the condition specified by cond to be signaled or broadcast to.
+When pthread_cond_wait() is called, the calling thread must have mutex locked. 
+The pthread_cond_wait() function atomically unlocks mutex and performs the wait for the condition
+
+Parameters:
+cond - Address of condition variable
+mutex - Address of the mutex associated with the condition variable
+
+Return Value:
+0 - success
+value - as not successful. value is set to indicate the error condition.
+
+
+Signal Condition to One Waiting Thread
+int pthread_cond_signal(pthread_cond_t *cond);
+
+Description:
+wakes up at least one thread that is currently waiting on the condition variable specified by cond.
+If no threads are currently blocked on the condition variable, this call has no effect.
+
+Parameters:
+cond - Address of condition variable
+
+Return Value:
+0 - success
+value - as not successful. value is set to indicate the error condition.
