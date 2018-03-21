@@ -1,0 +1,21 @@
+What are local static variables? What is their use?
+Ans:A local static variable is a variable whose lifetime doesn’t end with a function call
+ where it is declared. It extends for the lifetime of complete program. All calls to the 
+ function share the same copy of local static variables. Static variables can be used 
+ to count the number of times a function is called. Also, static variables get the default
+ value as 0. For example, the following program prints “0 1”
+ 
+can we return the pointer to a local static variable from a  function ?
+Ans: yes we can return the pointer to a local static variable,but the function become non-reentrant.
+
+
+What are static functions? What is their use?
+Ans:In C, functions are global by default. The “static” keyword before a function name makes it static.
+ Unlike global functions in C, access to static functions is restricted to the file where they are declared.
+ Therefore, when we want to restrict access to functions, we make them static. Another reason for making 
+ functions static can be reuse of the same function name in other files.
+ 
+ What is the difference between array and pointer?
+ Ans: Behavior of sizeof operator
+      though array name is pointer it cannot be assigend with any other address 
+	  while a pointer variable can be assigned with the another pointer.
