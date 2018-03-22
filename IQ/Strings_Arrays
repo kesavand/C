@@ -37,7 +37,79 @@ void rvereseArray(int arr[], int start, int end)
    rvereseArray(arr, start+1, end-1);   
 } 
 
-==================================================
+================================================================================
+C program to Reverse each word in a string ?
+example:
+Input: geeksforgeeks a computer science portal for geeks 
+Output: skeegrofskeeg a retupmoc ecneics latrop rof skeeg
+
+Algorithm;
+1. Take a string as input and store it in the array str[].
+2. Using for loop store each word of the input string into the 2-D array str1[][].
+   or a linked list.
+3. In the 2-D array str1[][] reverse each word of the string at each row of the array.
+4. Print the 2-D array as output.
+/* 
+ *  C Program to Reverse every Word of given String
+ */
+#include <stdio.h>
+#include <string.h>
+ 
+void main()
+{
+    int i, j = 0, k = 0, x, len;
+    char str[100], str1[10][20], temp;
+ 
+    printf("enter the string :");
+    scanf("%[^\n]s", str);
+ 
+/* reads into 2d character array */
+    for (i = 0;str[i] != '\0'; i++)
+    {
+        if (str[i] == ' ')
+        {
+            str1[k][j]='\0';
+            k++;
+            j=0;
+        }
+        else
+        {
+            str1[k][j]=str[i];
+            j++;
+        }
+    }
+    str1[k][j] = '\0';
+ 
+/* reverses each word of a given string */
+    for (i = 0;i <= k;i++)
+    {
+        len = strlen(str1[i]);
+        for (j = 0, x = len - 1;j < x;j++,x--)
+        {
+            temp = str1[i][j];
+            str1[i][j] = str1[i][x];
+            str1[i][x] = temp;
+        }
+    }
+    for (i = 0;i <= k;i++)
+    {
+        printf("%s ", str1[i]);
+    }
+}
+================================================================================
+C program to Reverse a sentence ?
+example:
+INPUT: have a nice day 
+OUTPUT: day nice a have 
+
+Algorithm:
+1. store each word in a linked list or 2D array
+2. print the linked list or array contents in reverse order.
+
+PROGRAM:
+TBD
+================================================================================
+
 How to Remove all duplicates from a given string ?
 METHOD 1 (Use Sorting)
 
@@ -160,3 +232,379 @@ int main() {
 
    return (0);
 }
+
+
+
+
+how to find whether a given string is a palindrome ?
+
+#include <stdio.h>
+#include <string.h>
+
+int checkForPalindrome(char str[]);
+int main(void)
+{
+    char str[] = "nitin";
+    checkForPalindrome(str);
+    return 0;
+}
+
+int checkForPalindrome(char str[])
+{
+    
+    if (str == NULL){
+        
+        printf("The string is NULL\n");
+        return 0;
+    }
+    
+    if (strlen(str) == 1)
+    {
+        printf("The string is a palindrome");
+        return 0;
+    }
+        
+    char *start = str;
+    char *end = start + (strlen(str) - 1);
+    
+    printf("the start is %c the end is %c\n",*start,*end);
+    
+    while(start <= end)
+    {
+        if(*start != *end)
+        {
+            printf("The string is not a palindrome");
+            return 0;
+        }
+        start++;
+        end--;
+   }
+    printf("The string  %s is a palinfrome\n",str);
+}
+================================================================================
+Given a string, print all possible palindromic partitions ?
+#include <stdio.h>
+#include <string.h>
+
+int checkForPalindrome(char *str, char * start, char *end)
+{
+    if (str == NULL || start == NULL || end == NULL){
+        
+        printf("The string is NULL\n");
+        return 0;
+    }
+   
+    while(start <= end)
+    {
+        if(*start != *end)
+        {
+            printf("The string is not a palindrome");
+            return 0;
+        }
+
+    }
+    printf("The string  %s \n",str);
+}
+
+char * readSubStrs(char str[])
+{
+        char substr[100][100]; // To store the sub strings 
+        char *start= str, *next ;
+        char *end = start + (strlen(str) - 1 );
+        int stridx = 0;
+
+        for (start =str;start <= end;start++)
+        {
+           for(next = start; next <= end; next++)
+            {
+                int len = (next - start )+1;
+                memcpy(substr[stridx],start,len );
+                printf("The string is %s\n",substr[stridx]);
+                checkForPalindrome(substr[stridx],start,next);
+                stridx++;   
+            }
+        }
+}
+int main(void)
+{
+    char str[] = "n";
+    readSubStrs(str);
+    return 0;
+}
+================================================================================
+C program to find the occurences of a substring in a string ?
+// C program for Naive Pattern Searching algorithm
+#include <stdio.h>
+#include <string.h>
+
+void search(char* pat, char* txt)
+{
+	int M = strlen(pat);
+	int N = strlen(txt);
+
+	/* A loop to slide pat[] one by one */
+	for (int i = 0; i <= N - M; i++) {
+		int j;
+
+		/* For current index i, check for pattern match */
+		for (j = 0; j < M; j++)
+			if (txt[i + j] != pat[j])
+				break;
+
+		if (j == M) // if pat[0...M-1] = txt[i, i+1, ...i+M-1]
+			printf("Pattern found at index %d n", i);
+	}
+}
+
+/* Driver program to test above function */
+int main()
+{
+	char txt[] = "AABAACAADAABAAABAA";
+	char pat[] = "AABA";
+	search(pat, txt);
+	return 0;
+}
+================================================================================
+C program to Remove all spaces from a string ?
+// An efficient C++ program to remove all spaces
+// from a string
+
+1) Initialize 'count' = 0 (Count of non-space character seen so far)
+2) Iterate through all characters of given string, do following
+     a) If current character is non-space, then put this character
+        at index 'count' and increment 'count'
+3) Finally, put '\0' at index 'count'
+
+#include <iostream>
+using namespace std;
+ 
+// Function to remove all spaces from a given string
+void removeSpaces(char *str)
+{
+    // To keep track of non-space character count
+    int count = 0;
+ 
+    // Traverse the given string. If current character
+    // is not space, then place it at index 'count++'
+    for (int i = 0; str[i]; i++)
+        if (str[i] != ' ')
+            str[count++] = str[i]; // here count is
+                                   // incremented
+    str[count] = '\0';
+}
+ 
+// Driver program to test above function
+int main()
+{
+    char str[] = "g  eeks   for ge  eeks  ";
+    removeSpaces(str);
+    cout << str;
+    return 0;
+}
+================================================================================
+C program to Remove extra spaces from a string ?
+The above program login can be used with minor modifications
+The idea is to maintain 2 pointers. Initially both point to the beginning of the
+array.
+
+The first pointer keeps track of next position to be filled in output string.
+
+The second pointer is advanced to read all characters of the string one by one.
+
+On finding any non-space character, the character is copied to the location of 
+the first pointer and then both the first and second pointers are advanced.
+
+If non-space character is full stop, comma or a question mark, we also remove 
+any preceding space before it.
+
+On finding consecutive space characters, one only space is copied to the 
+location of the first pointer and rest are ignored. The leading and trailing 
+spaces are handled separately in the solution.
+================================================================================
+C program to Replace all occurrences of string AB with C without 
+using extra space ?
+A simple solution is to find all occurrences of “AB”. For every occurrence, 
+replace it with C and more all characters one position back.
+
+void search(char* pat, char* txt)
+{
+	int M = strlen(pat);
+	int N = strlen(txt);
+
+	/* A loop to slide pat[] one by one */
+	for (int i = 0; i <= N - M; i++) {
+		int j;
+
+		/* For current index i, check for pattern match */
+		for (j = 0; j < M; j++)
+			if (txt[i + j] != pat[j])
+				break;
+
+		if (j == M) // if pat[0...M-1] = txt[i, i+1, ...i+M-1]
+			printf("Pattern found at index %d n", i);
+			//Replace this with the new pattern.
+	}
+}
+================================================================================
+C Program to Return maximum occurring character in an input string ?
+// C++ program to output the maximum occurring character
+// in a string
+Algorithm:
+One obvious approach to solve this problem would be to sort the input string and
+then traverse through the sorted string to find the character which is occurring
+maximum number of times. Let us see if we can improve on this. So we will use a
+technique called ‘Hashing’. In this, when we traverse through the string, 
+we would hash each character into an array of ASCII characters.
+
+#include<bits/stdc++.h>
+#define ASCII_SIZE 256
+using namespace std;
+
+char getMaxOccuringChar(char* str)
+{
+	// Create array to keep the count of individual
+	// characters and initialize the array as 0
+	int count[ASCII_SIZE] = {0};
+
+	// Construct character count array from the input
+	// string.
+	int len = strlen(str);
+	int max = -1; // Initialize max count
+	char result ; // Initialize result
+	
+	for (int i=0; i<len; i++)
+	{
+		count[str[i]]++;
+		if (count[str[i]] > max)
+		{
+		    max = count[str[i]] ;
+		    result = str[i];
+		}
+		
+	}
+	
+	printf("max is %c\n",result);
+	
+
+
+	return result;
+}
+
+// Driver program to test the above function
+int main()
+{
+	char str[] = "saaample string";
+	cout << "Max occurring character is "
+		<< getMaxOccuringChar(str);
+}
+================================================================================
+C program to find the length of the string ?
+algorithm:
+1. Take a string as input and store it in the array string[].
+2. Using for loop count the number of characters in the array string[]. 
+Use the variable length to keep the count of the characters in the array.
+3. Do step-2 till the end of input string.
+4. Print the variable length as output.
+/*
+ * C program to find the length of a string without using the
+ * built-in function
+ */
+#include <stdio.h>
+ 
+void main()
+{
+    char string[50] = "GeeksforGeeks";
+    int i, length = 0;
+ 
+    
+    for (i = 0; string[i] != '\0'; i++)
+    {
+        length++;
+    }
+    printf("The length of a string is the number of characters in it \n");
+    printf("So, the length of %s = %d\n", string, length);
+}
+================================================================================
+C program to Concatenate Two Strings ?
+void concat(char s1[], char s2[]) {
+   int i, j;
+ 
+   i = strlen(s1);
+ 
+   for (j = 0; s2[j] != '\0'; i++, j++) {
+      s1[i] = s2[j];
+   }
+ 
+   s1[i] = '\0';
+}
+================================================================================
+C Program to Copy a String ?
+// CPP program to copy one string to other
+// without using in-built function
+ 
+#include <stdio.h>
+int main()
+{
+    // s1 is the source( input) string and s2 is the destination string
+    char s1[] = "GeeksforGeeks", s2[100], i;
+ 
+    // Print the string s1
+    printf("string s1 : %s\n", s1);
+ 
+    // Execute loop till null found
+    for (i = 0; s1[i] != '\0'; ++i) {
+        // copying the characters by
+        // character to str2 from str1
+        s2[i] = s1[i];
+    }
+ 
+    s2[i] = '\0';
+ 
+    // printing the destination string
+    printf("String s2 : %s", s2);
+ 
+    return 0;
+}
+
+what are the issues in the standard strcpy function and how to rectify this ?
+Issues in the standard strcpy function.
+1. If destination string length is less than source string, 
+entire string value won’t be copied into destination string and may lead 
+to buffer overflow.
+Solution to this is to add one more parameter length in the strcpy.
+
+2. both src and dst can overlap 
+the below program address the overlapping issues
+
+char* my_strcpy(char *a, char *b){
+
+                if(a == NULL || b == NULL){
+                    return NULL;
+                }
+
+                if( a == b)
+                    return a;
+
+                //case1: b is placed further in the memory
+                if((a <= b && a+strlen(a) > b)) {
+                  char *n = a;
+                  while(*b != '\0'){
+                    *a = *b;
+                    a++; b++;
+                  }
+                  *a = '\0';
+                 return n;
+               }
+                //case 2: a is further in memory
+                else if((b <= a && b+strlen(b) > a)) { 
+                  char *src = b + strlen(b) -1; //src points to end of b
+                  char *dest = a;
+
+                  while( src != b){
+                     *dest = *src;
+                     dest--; src--;  //not sure about this..
+                  }
+                 *a = '\0';
+                 return a;
+              }
+================================================================================
