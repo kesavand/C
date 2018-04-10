@@ -349,6 +349,7 @@ Liner search
 Binary search 
 sublist search
 substring search
+Front&Back Search
 
 
 Binary Search
@@ -369,5 +370,57 @@ int binarySearch(int a[], int item, int low, int high)
         return binarySearch(a, item, mid+1, high);
     return binarySearch(a, item, low, mid-1);
 }
+
+Front & Back Search 
+-------------------
+Front and Back search algorithm for finding element with value x works the following way:
+
+Initialize indexes front and back pointing to first and last element respectively of the array.
+If front is greater than rear, return false.
+Check the element x at front and rear index.
+If element x is found return true.
+Else increment front and decrement rear and go to step 2.
+
+Key Points:
+The worst case complexity is O(n/2) (equivalent to O(n)) when element is in the middle or not present in the array.
+The best case complexity is O(1) when element is first or last element in the array.
+
+Program
+-------
+// CPP program to implement front and back
+// search
+#include<iostream>
+using namespace std;
+ 
+bool search(int arr[], int n, int x)
+{
+    // Start searching from both ends
+    int front = 0, back = n - 1;
+ 
+    // Keep searching while two indexes
+    // do not cross.
+    while (front <= back)
+    {
+        if (arr[front] == x || arr[back] == x)
+          return true;
+        front++;
+        back--;
+    }
+    return false;
+}
+ 
+int main()
+{
+   int arr[] = {10, 20, 80, 30, 60, 50,
+                     110, 100, 130, 170};
+   int x = 130;
+   int n = sizeof(arr)/sizeof(arr[0]);
+   if (search(arr, n, x))
+      cout << "Yes";
+   else
+      cout << "No";
+   return 0;
+}
+
 
 
